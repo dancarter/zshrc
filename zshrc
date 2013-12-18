@@ -2,7 +2,7 @@
 ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
-ZSH_THEME="agnoster"
+ZSH_THEME="robbyrussell"
 
 alias ls='ls --color=auto'
 alias ll='ls -l --color=auto'
@@ -16,32 +16,24 @@ alias -s zip='unzip'
 alias -s txt=$EDITOR
 alias -s html=$BROWSER
 
-function migrate() {
-  rake db:migrate;
-  rake db:rollback;
-  rake db:migrate;
-  rake db:test:prepare;
-}
-function mcd() {
-  mkdir -p "$1" && cd "$1";
-}
 eval "$(hub alias -s)"
+
+function migrate() {
+  rake db:migrate && rake db:rollback && rake db:migrate && rake db:test:prepare
+}
+
+function mcd() {
+  mkdir -p "$1" && cd "$1"
+}
+
 function rails_new() {
-  rails new $1 -d postgresql;
-  cd $1;
-  git init;
-  git add .;
-  git commit -m 'Initial commit';
+  rails new $1 -d postgresql && cd $1 && git init && git add . && git commit -m 'Initial commit'
 }
+
 function rails_newgh() {
-  rails new $1 -d postgresql;
-  cd $1;
-  git init;
-  git add .;
-  git commit -m 'Initial commit';
-  git create -d $2;
-  git push -u origin master;
+  rails new $1 -d postgresql && cd $1 && git init && git add . && git commit -m 'Initial commit' && git create -d $2 && git push -u origin master
 }
+
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
