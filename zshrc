@@ -18,12 +18,12 @@ alias -s html=$BROWSER
 
 eval "$(hub alias -s)"
 
-function migrate() {
-  rake db:migrate && rake db:rollback && rake db:migrate && rake db:test:prepare
-}
-
 function mcd() {
   mkdir -p "$1" && cd "$1"
+}
+
+function migrate() {
+  rake db:migrate && rake db:rollback && rake db:migrate && rake db:test:prepare
 }
 
 function rails_new() {
