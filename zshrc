@@ -19,19 +19,19 @@ alias -s html=$BROWSER
 eval "$(hub alias -s)"
 
 function mcd() {
-  mkdir -p "$1" && cd "$1"
+  mkdir -p "$1" && cd "$1";
 }
 
 function migrate() {
-  rake db:migrate && rake db:rollback && rake db:migrate && rake db:test:prepare
+  rake db:migrate && rake db:rollback && rake db:migrate && rake db:test:prepare;
 }
 
 function rails_new() {
-  rails new $1 -d postgresql && cd $1 && git init && git add . && git commit -m 'Initial commit'
+  rails new $1 -d postgresql && cd $1 && git init && git add . && git commit -m 'Initial commit';
 }
 
 function rails_newgh() {
-  rails new $1 -d postgresql && cd $1 && git init && git add . && git commit -m 'Initial commit' && git create -d $2 && git push -u origin master
+  rails new $1 -d postgresql && cd $1 && git init && git add . && git commit -m 'Initial commit' && git create -d $2 && git push -u origin master;
 }
 
 # Set to this to use case-sensitive completion
