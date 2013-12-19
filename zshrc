@@ -16,20 +16,31 @@ alias -s zip='unzip'
 alias -s txt=$EDITOR
 alias -s html=$BROWSER
 
+#Aliases hub to git so you can use all the features added by hub 
+#with the git command
 eval "$(hub alias -s)"
 
+#Create a new folder and cd into it
+#ex.) mcd new_folder
 function mcd() {
   mkdir -p "$1" && cd "$1";
 }
 
+#Migrate, rollback, migrate, and prepare the test db with the command migrate
 function migrate() {
   rake db:migrate && rake db:rollback && rake db:migrate && rake db:test:prepare;
 }
 
+#Create a new rails project, switch to its directory, initialize a git repo,
+#and create the first commit for it with your new project
+#ex.) rails_new MyAwesomeProject
 function rails_new() {
   rails new $1 -d postgresql && cd $1 && git init && git add . && git commit -m 'Initial commit';
 }
 
+#Same as rails new, but also creates a github repo and pushes your new project
+#to github. The string after the project name will be the github description
+#ex.) rails_newgh WeMail "New shared email service!"
 function rails_newgh() {
   rails new $1 -d postgresql && cd $1 && git init && git add . && git commit -m 'Initial commit' && git create -d $2 && git push -u origin master;
 }
